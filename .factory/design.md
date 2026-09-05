@@ -44,3 +44,5 @@ photorealism, copyrighted characters.
 
 Provenance: generated with the factory Azure OpenAI image deployment on
 2026-08-28; original product illustration. Optimised WebP is shipped locally.
+`social-preview.png` is a 1200×630 cropped, palette-reduced derivative of that
+same original illustration, made locally on 2026-09-05 for link previews.

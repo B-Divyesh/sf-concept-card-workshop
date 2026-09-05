@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Concept Card Workshop">
+  <rect width="180" height="180" fill="#101424"/>
+  <rect x="29" y="31" width="76" height="99" fill="#f7f1df" stroke="#8cf4ff" stroke-width="8"/>
+  <rect x="76" y="51" width="76" height="99" fill="#f7f1df" stroke="#ffcf70" stroke-width="8"/>
+  <path d="M53 71h28M53 90h28M100 91h28M100 110h20" stroke="#171b2a" stroke-width="9"/>
+</svg>

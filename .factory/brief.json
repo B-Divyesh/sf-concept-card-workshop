@@ -1,0 +1,30 @@
+{
+  "slug": "concept-card-workshop",
+  "title": "Concept Card Workshop",
+  "territory": "games-creative",
+  "user": "Instructors teaching procedural or safety concepts who need a fast way to run a small-group, discussion-led card exercise after a lecture.",
+  "evidence": [
+    {
+      "url": "https://hn.algolia.com/api/v1/items/48250814",
+      "date": "2026-05-23",
+      "quote_or_summary": "A learner describes a difficult avalanche-risk lecture becoming understandable when the instructor switched to physical Snow Safety Cards, and asks about games/cards for learning skills."
+    },
+    {
+      "url": "https://github.com/logseq/logseq/issues/11852",
+      "date": "2025-05-08",
+      "quote_or_summary": "A parent reports that a daughter who uses flashcards heavily encountered a serious scheduling-algorithm failure, reinforcing the value of activities that do not depend on a black-box review queue."
+    }
+  ],
+  "recurrence": "The 2026 firsthand classroom-to-cards account and 2025 heavy-user reliability issue both favor transparent, instructor-led practice over a fragile individual SRS loop.",
+  "current_workaround": "Buy specialized card decks, improvise slips of paper, or lecture again with discussion questions.",
+  "incumbents_and_gap": "Quizlet Live and Kahoot are screen-centric competition products; commercial training decks are domain-specific. Teachers lack a neutral printable builder for scenario, evidence, decision, and consequence cards.",
+  "smallest_useful_product": "A static-web card-set composer with four card roles, printable cut sheets, a facilitator timer, and a no-account join code for optional projection. Non-goals: graded assessments, public marketplaces, generated lesson content, or student profiling.",
+  "success_measure": "Ten pilot facilitators each run one 15-minute activity; at least 70% report every group contributed one defensible decision in the debrief.",
+  "artifact_class": "static-web",
+  "monetization": "freemium — free single-set printing invites teacher adoption; paid offline pack templates can support niche professional training.",
+  "constraints": "No bundled regulated/safety curriculum; teacher owns content and outcomes; printable PDFs need accessible text alternatives and browser-only generation.",
+  "est_build_effort": "M",
+  "why_distinct": "It creates facilitated reasoning games from teacher-authored material, not another solitary flashcard or points quiz.",
+  "confidence": 4,
+  "state": "RESEARCHED"
+}

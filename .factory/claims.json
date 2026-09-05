@@ -1,0 +1,65 @@
+[
+  {
+    "id": "sample-sandbox",
+    "claim": "Try it with sample data uses separate storage and does not change the real workshop.",
+    "where": "Landing action and demo banner",
+    "test": "npm run test:browser -- --grep @claim:sample-sandbox",
+    "sandbox": "Create one real card, enter /demo, reset the four-card sample, return to real mode, and compare the real storage value."
+  },
+  {
+    "id": "offline-reload",
+    "claim": "Works offline after the first visit.",
+    "where": "Landing facts and README",
+    "test": "npm run test:browser -- --grep @claim:offline-reload",
+    "sandbox": "Fresh browser context: load /demo, wait for the service worker, reload once online, set the context offline, and reload the sample."
+  },
+  {
+    "id": "local-workshop",
+    "claim": "Cards stay in this browser.",
+    "where": "Landing facts",
+    "test": "npm run test:browser -- --grep @claim:local-workshop",
+    "sandbox": "Fresh local authoring flow with request logging; every request must stay on the product origin."
+  },
+  {
+    "id": "projection-join",
+    "claim": "A facilitator can share a no-account projection join code or link.",
+    "where": "Projection section and join dialog",
+    "test": "npm run test:browser -- --grep @claim:projection-join",
+    "sandbox": "Open the demo projection, copy its CCW1 code, paste it into Join projection, and assert the same four cards load."
+  },
+  {
+    "id": "browser-print",
+    "claim": "Print cards opens a printable browser document with the card set.",
+    "where": "Card set toolbar and README",
+    "test": "npm run test:browser -- --grep @claim:browser-print",
+    "sandbox": "From /demo, open Print cards and assert the popup title and four rendered card sheets."
+  },
+  {
+    "id": "free-core",
+    "claim": "One local card set is free to make and print without a license.",
+    "where": "Landing facts and paid tools section",
+    "test": "npm run test:browser -- --grep @claim:free-core",
+    "sandbox": "From no license and no saved data, make one card and assert its printable popup opens."
+  },
+  {
+    "id": "timer-range",
+    "claim": "The facilitator clock can be set from 5 to 30 minutes.",
+    "where": "README",
+    "test": "npm run test:browser -- --grep @claim:timer-range",
+    "sandbox": "Set the accessible time slider to both endpoints and assert its visible timer values."
+  },
+  {
+    "id": "four-card-roles",
+    "claim": "A card set supports scenario, evidence, decision, and consequence cards.",
+    "where": "README",
+    "test": "npm run test:browser -- --grep @claim:four-card-roles",
+    "sandbox": "Load the shipped demo and assert its four visible cards cover each named role."
+  },
+  {
+    "id": "paid-pack-price",
+    "claim": "Offline Pack Templates is an optional one-time $12 purchase.",
+    "where": "Paid tools section, purchase dialog, README, and Terms",
+    "test": "npm run test:browser -- --grep @claim:paid-pack-price",
+    "sandbox": "Open the paid-pack dialog and assert the user sees its one-time price and checkout destination before leaving the site."
+  }
+]
