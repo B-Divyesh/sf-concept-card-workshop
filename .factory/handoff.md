@@ -1,62 +1,87 @@
 # Concept Card Workshop handoff
 
-## Verification status: FAIL
+## Status
 
-Independent QA was completed on 2026-08-28 for candidate
-`727e701542cdea13148e3ec3068b7f11a6b5d24e` and
-<https://concept-card-workshop.sociobot.in>. The live HTML, JS, CSS, image, and
-service worker exactly match the fresh candidate build, so the result is not a
-stale-deployment mismatch.
+The implementation is deployed to
+<https://concept-card-workshop.sociobot.in>.
 
-Release blockers:
+- Implementation SHA: `f4ea3f6021cacca6205c6a7e85e177eaebb300af`
+- Documentation handoff SHA: recorded after this handoff commit
+- Static deployment: Azure Static Web Apps production deployment
+  `2016a1eb-f8f2-4c78-b4af-dfd0ffb40428`
+- Artifact: Vite + TypeScript static site, with `dist/index.html` at its root.
 
-- `.factory/claims.json` is missing; the mandatory claim suite cannot run.
-- The advertised purchase URL returns HTTP 404, so the $12 unlock cannot be
-  purchased.
-- Form changes and clock ticks replace the DOM, lose keyboard focus, and can
-  swallow the next field interaction.
-- “Use the sample” overwrites existing work with no confirmation or undo.
-- A new checkout-return token is not verified when an older cached verdict is
-  still fresh.
-- The purchase dialog has a serious axe contrast failure (1.67:1 Terms link).
-- The six-character join code is not usable; only the full fragment URL carries
-  the deck.
-- Malformed-but-valid stored JSON leaves a blank, unrecoverable app.
+## What changed
 
-Additional findings include sub-44px mobile targets, horizontal overflow at
-200% root text size, a 404 favicon console/network error, 30-second cache policy
-on hashed assets, and missing CSP/Permissions-Policy. Full evidence and repro
-details are in `.factory/verification.md`.
+- Added the required researched brief, claims manifest, demo documentation,
+  copy audit, catalog description, and billing-offer handoff metadata.
+- Reworked saving so title/body changes and timer ticks update only the needed
+  DOM. Focus stays in the next field and on the timer control.
+- Made sample use a true `/demo` sandbox with `demo:ccw:workshop:v1`, a
+  persistent status banner, reset, and a return to real work that does not copy
+  or overwrite real data.
+- Validated local workshop data before use. Bad JSON or wrong-shaped data now
+  shows a recovery action instead of leaving the app blank.
+- Replaced the decorative six-character code with a working `CCW1` join code.
+  It contains the card deck, can be pasted into **Join projection**, and needs
+  no account or server storage.
+- Tied license verdicts to their token and force-verifies every returned or
+  restored token, even when another verdict is fresh.
+- Fixed paid-dialog contrast, 44px control sizing, 200% text reflow,
+  complementary-landmark nesting, favicon, metadata, route titles, legal page
+  styling, service-worker cache updates, immutable asset caching, CSP,
+  Permissions-Policy, and the designed HTTP 404 page.
 
-## What passed
+## Verification
 
-- Cold first read clearly explains the product, audience, primary action, and
-  offers a one-click sample.
-- `npm ci`, `npm test` (2 Vitest + 1 Playwright), and `npm run build` pass. No
-  lint task exists.
-- Core sample, persistence, escaping, print, projection, clear recovery,
-  reduced motion, normal 390px layout, privacy/terms, and offline reload work.
-- Live mobile Lighthouse: performance 97, accessibility 100, best practices 96,
-  SEO 91; LCP 1.1s, TBT 190ms, CLS 0. Production JS is 15,473 bytes, CSS 8,998
-  bytes, hero 36,650 bytes.
-- The billing verify endpoint has working CORS and rate limiting: a 120-request
-  burst returned 30 HTTP 200 and 90 HTTP 429 responses with `Retry-After: 4`.
+From a clean dependency install:
 
-## Reproduce
-
-```bash
+```sh
 npm ci
 npm test
 npm run build
-npm run preview
 ```
 
-Use the live URL for deployment checks. The exact command output, file hashes,
-accessibility results, response policies, and remediation list are recorded in
-`.factory/verification.md`.
+Passed on 2026-09-05:
 
-## Next steps
+- `npm test`: 3 Vitest model tests and 14 Playwright browser tests.
+- `npm run build`: production `dist/` output.
+- Every command in [`.factory/claims.json`](claims.json) passed individually:
+  sample sandbox, offline reload, local-only authoring, projection join,
+  browser print, free core, 5–30 minute clock, four roles, and paid-pack copy.
+- The factory URL verifier passed on the live root: HTTPS 200, title, `lang`,
+  one h1, main landmark, alt text, labelled buttons, and no page or console
+  errors. Evidence is in `/work/.evidence/live-verify/`.
+- Live axe browser check reported zero serious/critical findings on the landing
+  page. The paid dialog is covered by the same axe assertion in the browser
+  suite.
+- Fresh desktop and 390px phone sessions both showed, before scroll: **Make
+  discussion cards after a lecture**; the instructor audience; and **Start a
+  card set** with its outcome. No errors occurred.
+- Live demo loaded four realistic cards with the persistent sample label;
+  reset restored four cards; returning to real mode left real storage unchanged.
+  A live offline reload after the first visit restored the demo. A live pasted
+  `CCW1` code opened the same four-card projection.
+- Live route checks: `/`, `/demo`, `/privacy/`, and `/terms/` return 200;
+  an unknown path returns the designed 404 page with HTTP 404.
+- Live Lighthouse mobile report: Performance 100, Accessibility 100, Best
+  Practices 100, SEO 100; LCP 1.1 s; CLS 0. The first-load JS is 21.36 kB raw
+  (7.63 kB gzip), CSS is 10.75 kB raw (3.13 kB gzip), and the hero WebP is
+  36.65 kB.
 
-Resolve every critical/major item above, add claim tests and missing brief
-artifact, deploy the enabled billing product, then rerun independent QA against
-the new candidate and live URL. Do not ship this candidate.
+## Known dependency
+
+The optional **Offline Pack Templates** purchase is preserved at its existing
+one-time $12 offer and the client-side return/verification behavior is fixed.
+At final verification, the separately operated production checkout endpoint
+still returned HTTP 404 (`enabled factory product`). The invalid-license verify
+endpoint returns HTTP 200 with `valid: false`, so the client integration is
+reachable. Billing registration is required before a customer can complete a
+purchase; it is not changed from this repository. Public registration metadata
+is at `/work/.evidence/billing-offer.json` and uses the exact product origin.
+
+## Next step
+
+The billing-registration operator should enable the existing
+`concept-card-workshop` one-time offer, then verify a real checkout return and
+entitlement. No other product functionality is blocked.
