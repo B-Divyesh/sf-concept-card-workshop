@@ -6,7 +6,7 @@ The implementation is deployed to
 <https://concept-card-workshop.sociobot.in>.
 
 - Implementation SHA: `f4ea3f6021cacca6205c6a7e85e177eaebb300af`
-- Documentation handoff SHA: recorded after this handoff commit
+- Documentation handoff SHA: `e4fb172b37890274dd11fc372702ec37d23427f5`
 - Static deployment: Azure Static Web Apps production deployment
   `2016a1eb-f8f2-4c78-b4af-dfd0ffb40428`
 - Artifact: Vite + TypeScript static site, with `dist/index.html` at its root.
