@@ -85,3 +85,21 @@ is at `/work/.evidence/billing-offer.json` and uses the exact product origin.
 The billing-registration operator should enable the existing
 `concept-card-workshop` one-time offer, then verify a real checkout return and
 entitlement. No other product functionality is blocked.
+
+## Verification 2 (2026-09-05)
+
+Independent verification reviewed implementation `f4ea3f6021cacca6205c6a7e85e177eaebb300af`
+and documentation `13bae7e48667cb2a2fb4c145b3b64925c4a367d5`. It is **FAIL**,
+with three findings recorded in `.factory/verification-2.md`:
+
+- The external Sociobot checkout URL still returns HTTP 404, so the advertised
+  optional $12 paid purchase cannot start.
+- Privacy, Terms, and the designed 404 page lack the required shared header,
+  navigation, and skip link.
+- Axe reports a minor invalid `role="button"` on demo-card `article` elements.
+
+Clean verification used `npm ci`, `npm test`, `npm run build`, every declared
+claim command individually, live desktop/phone/demo/offline checks, headers,
+Playwright axe, and Lighthouse (100/100/100/100). All nine declared command
+tests pass; no declared claim is untested. The product must not be marked PASS
+until the three findings are resolved.
